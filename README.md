@@ -33,8 +33,10 @@ Virtualized IPython notebooks:
    [Digital Ocean](https://www.digitalocean.com/).
  - [notebookcloud](https://notebookcloud.appspot.com/docs) does something
    similar, but is restricted to EC2.
- - Likewise, [Continuum Wakari](http://wakari.io) and
-   [picloud](http://picloud.com)
+ - [Continuum Wakari](http://wakari.io) and [picloud](http://picloud.com) offer
+   proprietary solutions, though both provide for a certain amount of
+   customization. Last time Dav checked, Waraki customization was more limited
+   and less reliable than picloud (though it requires less admin knowledge).
 
 Similarly, [RStudio Server](RStudio Server) runs through a web interface as
 well, but we have yet to identify a solution like jiffylab or the others above.
