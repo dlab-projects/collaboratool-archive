@@ -25,8 +25,11 @@ and pdf viewers; ...)
   - statsmodels + patsy (philip may not know about these, he said "when a stats
     lib exists")
 - R with a good set of libraries
-  - (Chris should weigh in on this)
+  - (here's a start, I can add more - Chris): ggplot2, plyr, knitr, lme4, devtools, RSQLite, DBI, foreach,
+    Rmpi, doMPI, doParallel, iterators, Rcpp, reshape2
+- RStudio
 - an SQL database that's moderately heavy duty (SQLite probably won't suffice)
+  - Chris and Ryan think SQLite will be good in many cases plus we don't see a downside to having both SQLite and Postgres
   - Philip asked for mySQL or MariaDB, but Postgres seems like the best choice
     to @davclark
 - support for something like Hadoop / gen. distributed computing
@@ -42,6 +45,9 @@ include LuaTeX)
 Ryan added the following:
 
 Optimized BLAS (OpenBLAS, ACML, etc.), configurable (e.g. Debian alternatives);
+(this is important for getting good performance in R, so we need R installed such 
+that is uses the system BLAS and then system BLAS set up to use an optimized BLAS,
+such as via Debian's alternatives system)
 
 gcc, clang;
 
@@ -65,6 +71,9 @@ E.g.:
 
 For R: https://launchpad.net/~marutter/+archive/c2d4u (appears to have replaced 
 https://launchpad.net/~marutter/+archive/rrutter)
+(Dav - is there a reason not to just get R from the standard Ubuntu repositories?
+I think these have pretty up-to-date R, e.g., currently they have 3.0.2, but 
+I may be misunderstanding this issue... - Chris)
 
 For python: [NeuroDebian](http://neuro.debian.net/) is likely the best source to
 get recent, but stable versions of scientific packages.
@@ -78,3 +87,4 @@ not free.
 
 More generally, we should be sensitive to installing performant linear algebra
 libraries, as they can vary widely in performance!
+(Chris and Ryan agree - see our note above)
