@@ -32,6 +32,8 @@ part of the hierarchy -- faculty, seminars, grants, research.)
 ### What is the Statistical Computing Facility's (SCF's) role
 
 Ryan has mentioned POST a number of times as similar to Puppet / Ansible.
+(By post, we just mean that we have a set of scripts to tailor Ubuntu 12.04
+for our needs in Statistics - post = "post-install").
 
 Philip Stark implied "Fernando's group" is doing something. Make sure SCF needs
 are fulfilled by "that."
