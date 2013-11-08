@@ -21,13 +21,13 @@
             - python-pycurl
 
       # CRAN
-      - apt_repository: repo='deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/' state=present
-      - apt_repository: repo='deb-src http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/' state=present
       #- apt_key: id=E084DAB9 url=http://keyserver.ubuntu.com:80 
       - apt_key: url=http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x51716619E084DAB9 state=present
+      - apt_repository: repo='deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/' state=present
+      - apt_repository: repo='deb-src http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/' state=present
 
       - name: R packages
-        apt: pkg={{ item }} state=latest
+        apt: pkg={{ item }} state=latest update_cache=yes
         with_items:
             - r-base
             - r-base-dev
