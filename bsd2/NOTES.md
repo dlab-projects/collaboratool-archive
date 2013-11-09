@@ -1,3 +1,41 @@
+8 Nov 2013
+----------
+
+In attendance: @aculich, @BagOfMostlyWater, @davclark, @jackspaceberkeley,
+@sbenthall
+
+## Situating the Project
+
+@sbenthal: How is this getting recorded, communicated? Where is it situated?
+
+@davclark is working on collaboratool.berkeley.edu to enable a web presence, we
+should set up a google group.
+
+AMP lab is working on Docker / Puppet approaches here:
+
+    https://github.com/amplab/docker-scripts
+
+The various projects for virtualizing python notebooks are enumerated in the
+README.md in the root of the collaboratool project.
+
+@aculich is concerned about distributing the work effectively. He is currently
+working on coordinating these things. In particular, he's working with Mozilla
+on persona, and has a meeting soon on CalNet auth.
+
+We need to spec out our plan / steps.
+
+We can create a project plan in GitHub or document. An initial concern is Dec 12
+Data Science Faire.
+
+A major concern is for all players to be aware of each other going in. @aculich
+thinks we should minimize what we do specifically for the data faire.
+
+@davclark mentions Harrison's Data Lab.
+
+Evans houses numerous spaces for SCF - undergrad & grad lounges, a cluster, etc.
+This is distinct from the space currently held by ETS that may be deployed as a
+kind of D-Lab North.
+
 5 Nov 2013
 ----------
 
