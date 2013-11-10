@@ -15,10 +15,20 @@
       - name: python packages
         apt: pkg={{ item }} state=latest
         with_items:
-            - ipython
+            - python-pycurl
+            - python-tornado # Note - this also pulls in pycurl
+            - python-zmq
+            - python-jinja2
             - python-pandas
             - python-sqlalchemy
-            - python-pycurl
+      - pip: name=ipython version=1.1
+      - pip: name=vincent
+
+      # The following would launch an ipython notebook, but we should write an
+      # init.d or service script, eventually. Similarly for RStudio.
+      # And these should probably not be launched by default to keep resource
+      # useage down!
+      # - shell: ipython notebook --no-browser --ip '*' & chdir=/vagrant/user_reports
 
       # CRAN
       #- apt_key: id=E084DAB9 url=http://keyserver.ubuntu.com:80 
