@@ -16,6 +16,7 @@
         apt: pkg={{ item }} state=latest
         with_items:
             - python-pycurl
+            - python-pip
             - python-tornado # Note - this also pulls in pycurl
             - python-zmq
             - python-jinja2
@@ -42,9 +43,47 @@
             - r-base
             - r-base-dev
             - r-base-core
+            - r-recommended
+
       # apt_* command usage for the curious
       # Not sure if we'd need update_cache here
       # - apt: pkg=python-pycurl state=present update_cache=yes
       # - apt_repository: repo='deb http://neurodeb.pirsquared.org data main contrib non-free' state=present
       # - apt_repository: repo='deb http://neurodeb.pirsquared.org precise main contrib non-free' state=present
       # - apt_key: id=2649A5A9 url=??? # http://pgp.mit.edu doesn't work
+
+      - name: Statistics packages
+        apt: pkg={{ item }} state=latest
+        with_items:
+            - build-essential
+            - curl
+            - cython
+            - git-annex
+            - git-core
+            - lam-runtime
+            - libblas-dev
+            - libopenblas-base
+            - libopenblas-dev
+            - mysql-client
+            - sqlite3
+            - tex4ht
+            - texi2html
+            - texlive-bibtex-extra
+            - texlive-extra-utils
+            - texlive-fonts-extra
+            - texlive-fonts-recommended
+            - texlive-formats-extra
+            - texlive-generic-extra
+            - texlive-generic-recommended
+            - texlive-latex-base
+            - texlive-latex-extra
+            - texlive-latex-recommended
+            - texlive-math-extra
+            - texlive-plain-extra
+
+      # We use OpenBLAS and not Atlas for BLAS. Installing OpenBLAS makes it
+      # the default but doesn't switch out Atlas' lapack library as well.
+      # Because Atlas' lapack references symbols in Atlas' BLAS, we have to use
+      # a different lapack.
+      - name: Use OpenBLAS lapack
+        shell: update-alternatives --set liblapack.so.3gf /usr/lib/lapack/liblapack.so.3gf
