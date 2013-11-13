@@ -7,5 +7,6 @@ Additional dependencies:
 
 Linux hosts
 ===========
+vagrant; 1.0.3 is not sufficient, 1.3.5 is.
 python-yaml
 python-jinja2
