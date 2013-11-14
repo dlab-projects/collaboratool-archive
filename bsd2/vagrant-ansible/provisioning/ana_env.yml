@@ -1,27 +1,35 @@
 - hosts: all
   tasks:
-      # We can't add repositories using the ansible apt_* commands without pycurl
-      # But this approach is documented below in case you're curious:
-
       # Now for the approach I'll recommend
       # We need to use shell (not recommended for "secure and predictable") as
       # we need the pipe to work
       # Note also, tee by default overwrites the file, so it's ok to run this
       # multiple times
-      - shell: wget -O- http://neuro.debian.net/lists/precise.us-ca.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
-      - command: apt-key adv --recv-keys --keyserver pgp.mit.edu 2649A5A9
+      #- shell: wget -O- http://neuro.debian.net/lists/precise.us-ca.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
+      #- command: apt-key adv --recv-keys --keyserver pgp.mit.edu 2649A5A9
       # Note, we only want to update the cache once (in the first apt command)
-      - apt: pkg=postgresql-9.1 state=latest update_cache=yes
+
+      # We can't add repositories using the ansible apt_* commands without
+      # pycurl.
+      - apt: pkg=python-pycurl state=latest update_cache=yes
+
+      # Found key via
+      # http://pgp.mit.edu:11371/pks/lookup?search=neurodebian&op=vindex
+      - apt_key: url=http://pgp.mit.edu:11371/pks/lookup?op=get&search=0xA5D32F012649A5A9
+      - apt_repository: repo='deb http://neurodeb.pirsquared.org data main contrib non-free' state=present
+      - apt_repository: repo='deb http://neurodeb.pirsquared.org precise main contrib non-free' state=present
+
+      # Additional python packages
       - name: python packages
         apt: pkg={{ item }} state=latest
         with_items:
-            - python-pycurl
             - python-pip
             - python-tornado # Note - this also pulls in pycurl
             - python-zmq
             - python-jinja2
             - python-pandas
             - python-sqlalchemy
+            - postgresql-9.1 
       - pip: name=ipython version=1.1
       - pip: name=vincent
 
