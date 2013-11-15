@@ -1,5 +1,6 @@
 - hosts: all
   tasks:
+
       # Now for the approach I'll recommend
       # We need to use shell (not recommended for "secure and predictable") as
       # we need the pipe to work
@@ -7,10 +8,10 @@
       # multiple times
       #- shell: wget -O- http://neuro.debian.net/lists/precise.us-ca.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
       #- command: apt-key adv --recv-keys --keyserver pgp.mit.edu 2649A5A9
-      # Note, we only want to update the cache once (in the first apt command)
 
       # We can't add repositories using the ansible apt_* commands without
-      # pycurl.
+      # pycurl. Note, we only want to update the cache once (in the first apt
+      # command)
       - apt: pkg=python-pycurl state=latest update_cache=yes
 
       # Found key via
@@ -23,13 +24,45 @@
       - name: python packages
         apt: pkg={{ item }} state=latest
         with_items:
-            - python-pip
-            - python-tornado # Note - this also pulls in pycurl
-            - python-zmq
+            - python-beautifulsoup
+            - python-bibtex
+            - python-biopython
+            - python-dev
+            - python-docutils
+            - python-egenix-mxproxy
+            - python-egenix-mxstack
+            - python-egenix-mxtexttools
+            - python-gadfly
+            - python-gd
+            - python-gdata
+            - python-genetic
+            - python-geoip
+            - python-gpgme
+            - python-htmlgen
+            - python-htmltmpl
             - python-jinja2
+            - python-kjbuckets
+            - python-lxml
+            - python-matplotlib
+            - python-mvpa
+            - python-mvpa-lib
+            - python-mysqldb
+            - python-numpy
+            - python-openpyxl
             - python-pandas
+            - python-pip
+            - python-rpy
+            - python-scipy
             - python-sqlalchemy
-            - postgresql-9.1 
+            - python-sqlite
+            - python-tornado # Note - this also pulls in pycurl
+            - python-virtualenv
+            - python-xlrd
+            - python-xlwt
+            - python-xmpp
+            - python-yaml
+            - python-zmq
+
       - pip: name=ipython version=1.1
       - pip: name=vincent
 
@@ -40,7 +73,8 @@
       # - shell: ipython notebook --no-browser --ip '*' & chdir=/vagrant/user_reports
 
       # CRAN
-      #- apt_key: id=E084DAB9 url=http://keyserver.ubuntu.com:80 
+      # Found key via
+      # http://keyserver.ubuntu.com:11371/pks/lookup?search=rutter+michael&op=vindex
       - apt_key: url=http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x51716619E084DAB9 state=present
       - apt_repository: repo='deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/' state=present
       - apt_repository: repo='deb-src http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/' state=present
@@ -53,14 +87,7 @@
             - r-base-core
             - r-recommended
 
-      # apt_* command usage for the curious
-      # Not sure if we'd need update_cache here
-      # - apt: pkg=python-pycurl state=present update_cache=yes
-      # - apt_repository: repo='deb http://neurodeb.pirsquared.org data main contrib non-free' state=present
-      # - apt_repository: repo='deb http://neurodeb.pirsquared.org precise main contrib non-free' state=present
-      # - apt_key: id=2649A5A9 url=??? # http://pgp.mit.edu doesn't work
-
-      - name: Statistics packages
+      - name: Useful packages for data science and computation
         apt: pkg={{ item }} state=latest
         with_items:
             - build-essential
@@ -73,6 +100,7 @@
             - libopenblas-base
             - libopenblas-dev
             - mysql-client
+            - postgresql-9.1 
             - sqlite3
             - tex4ht
             - texi2html
@@ -95,3 +123,11 @@
       # a different lapack.
       - name: Use OpenBLAS lapack
         shell: update-alternatives --set liblapack.so.3gf /usr/lib/lapack/liblapack.so.3gf
+
+      # Enthought Canopy
+      #- name: download enthought canopy
+      #  get_url: url=https://www.enthought.com/downloads/canopy/rh5-64/free/ dest=/tmp/canopy-rh5-64.sh mode=0755
+      #- name: install enthought canopy
+      #  shell: /tmp/canopy-rh5-64.sh -b -p /usr/local/canopy executable=/bin/bash creates=/usr/local/canopy
+      #- name: configure enthought canopy
+      #  file: path=/usr/local/canopy owner=vagrant group=vagrant recurse=yes state=directory
