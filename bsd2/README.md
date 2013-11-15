@@ -4,9 +4,10 @@ first offering. @jackspaceBerkeley previously created
 for this, and more recently, Philip Stark (Stats chair) suggested that he was
 interested in this. 
 
-This will be a collaboration with folks like @aculich, @fperez,
-@BagOfMostlyWater, @paciorek, and Josh Bloom. Here, I'll summarize what others
-have requested. I'll offer my own input in a comment below.
+This will be a collaboration with folks like Aaron Culich (@aculich), Fernando
+Perez (@fperez), Ryan Lovett (@BagOfMostlyWater), Chris Paciorek (@paciorek),
+and Josh Bloom. Here, I'll summarize what others have requested. I'll offer my
+own input in a comment below.
 
 And suggested the following basic requirements (edited by me):
 
