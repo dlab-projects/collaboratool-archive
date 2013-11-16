@@ -93,12 +93,16 @@
             - build-essential
             - curl
             - cython
+            - emacs
             - git-annex
             - git-core
             - lam-runtime
             - libblas-dev
+            - libjpeg62 # rstudio dependency
             - libopenblas-base
             - libopenblas-dev
+            - libreoffice
+            - lyx
             - mysql-client
             - postgresql-9.1 
             - sqlite3
@@ -131,3 +135,11 @@
       #  shell: /tmp/canopy-rh5-64.sh -b -p /usr/local/canopy executable=/bin/bash creates=/usr/local/canopy
       #- name: configure enthought canopy
       #  file: path=/usr/local/canopy owner=vagrant group=vagrant recurse=yes state=directory
+ 
+      # RStudio
+      - name: Download RStudio
+        command: /vagrant/provisioning/getrstudio.py creates=/tmp/rstudio-latest.deb
+      - name: Install RStudio
+        command: dpkg --skip-same-version -i /tmp/rstudio-latest.deb
+        register: dpkg_result
+        changed_when: "dpkg_result.stdout.startswith('Selecting')"
