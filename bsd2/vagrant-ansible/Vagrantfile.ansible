@@ -56,6 +56,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # information on available options.
 
   curr_dir = Dir.pwd
+  ENV['PYTHONPATH'] = "#{curr_dir}/ansible/lib:#{ENV['PYTHONPATH']}"
+  ENV['PATH'] = "#{curr_dir}/ansible/bin:#{ENV['PATH']}"
+  ENV['ANSIBLE_LIBRARY'] = "#{curr_dir}/ansible/library"
 
-  config.vm.provision "shell", path: "provisioning/bootstrap-ansible.sh"
+  config.vm.provision "ansible" do |ansible|
+    ansible.sudo = true
+    # Ideally, we'll point to some secure keys
+    # For now, the key in there is public anyway
+    ansible.host_key_checking = false
+    ansible.verbose = 'extra'
+    ansible.playbook = "provisioning/ana_env.yml"
+  end
+
 end
