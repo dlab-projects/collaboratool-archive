@@ -18,5 +18,5 @@ EXPOSE 8888
 # The kernel keeps dying and cannot be restarted. 
 # CMD ["ipython", "notebook", "--no-browser", "--ip=*"]
 
-# The following line is taken from the Dockerfile used to build michaelcrosby/ipython which is a precursor to parente/ipython-notebook
+# The following line is taken from the Dockerfile used to build crosbymichael/ipython which is a precursor to parente/ipython-notebook
 CMD ipython notebook --pylab=inline --ip=* --no-browser --MappingKernelManager.time_to_dead=10 --MappingKernelManager.first_beat=3
