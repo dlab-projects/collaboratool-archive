@@ -12,6 +12,10 @@ EXPOSE 8888
 # VOLUME /vagrant/content/LearnDataScience:/LearnDataScience
 # WORKDIR /LearnDataScience/notebooks
 
+
+
+
+
 # nborwankar:
 # The CMD line below was commented out as it did not work when the container was built from this file
 # While the syntax CMD["executable", "param","param"....] is recommended it is not working in this context.
