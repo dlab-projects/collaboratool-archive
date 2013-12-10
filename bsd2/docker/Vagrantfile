@@ -103,7 +103,7 @@ Vagrant::configure("2") do |config|
   # programmatically get the port if auto_corrected?
   # Also - while this works for me (Dav) in other Vagrant contexts, it does not
   # appear to work here, still requiring an ssh port forward.
-  config.vm.network :forwarded_port, guest: 8888, host: 8888, auto_correct: true
+  # config.vm.network :forwarded_port, guest: 8888, host: 8888, auto_correct: true
 end
 
 
@@ -156,6 +156,9 @@ Vagrant::VERSION >= "1.1.0" and Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |vb, override|
     override.vm.provision :shell, :inline => $vbox_script
+    # We don't want to do this if we are provisioning elsewhere - the remote
+    # server should already have an IP
+    override.vm.network :private_network, ip:"10.10.10.10"
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     # Seems healthy for current needs
