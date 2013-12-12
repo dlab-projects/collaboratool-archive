@@ -11,7 +11,7 @@ http://docs.docker.io/en/latest/installation/vagrant/
 * the 'vagrant up' command started the VM.
 * connect to it by executing 'vagrant ssh' from the Mac shell prompt.
 * Now we will pull a publicly available container (you can replace this one with your own when you have the rest working) containing IPython ready to run.
-* Now at the shell prompt  inside the Vagrant VM execute 'docker pull parente/ipython-notebook' .
+* Now at the shell prompt  inside the Vagrant VM execute 'docker pull nitin/learn_data_science' .
 * This gets you the minimal environment needed to run IPython Notebook, from index.docker.io (needs hi-speed net conn)
 * Now get the test notebook content into a local file system from nborwankar/LearnDataScience git repo
 * Read comments under issue #31 and understand the details of the -v, and -w flags for mounting volumes and setting working directories as a part of 'docker run'
@@ -34,8 +34,8 @@ e.g. for Ubuntu see
 http://docs.docker.io/en/latest/installation/ubuntulinux/
 
 * Pull a publicly available container (you can replace this one with your own when you have the rest working).
-* Execute 'docker pull parente/ipython-notebook' .
-* This gets you a minimal container with IPython from index.docker.io (needs hi-speed net conn)
+* Execute 'docker pull nitin/learn_data_science' .
+* This gets you a container with IPython from index.docker.io (needs hi-speed net conn)
 * Now get the test notebook content into a local file system from nborwankar/LearnDataScience git repo
 * Read comments under issue #31 and understand the details
 Map your LearnDataScience directory location to a container volume, noting the need to mount the parent dir of 'notebooks' and not the notebooks dir itself as it has siblings it uses.
