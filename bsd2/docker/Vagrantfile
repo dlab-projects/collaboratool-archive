@@ -1,8 +1,18 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-BOX_NAME = ENV['BOX_NAME'] || "precise64"
-BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64.box"
+BOX_NAME = ENV['BOX_NAME'] || "raring64"
+# BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64.box"
+
+# Ubuntu's images via vagrantbox.es - about 300 MB bare
+BOX_URI = ENV['BOX_URI'] || "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-amd64-vagrant-disk1.box"
+
+# from github.com/teohm/vanilla-boxes - about 400 MB
+# config.vm.box_url = "http://goo.gl/y79mW"
+
+# Opscode boxes build using Packer - rec'd by teohm - about 480MB.
+# config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-13.04_chef-provisionerless.box"
+
 VF_BOX_URI = ENV['BOX_URI'] || "http://files.vagrantup.com/precise64_vmware_fusion.box"
 AWS_BOX_URI = ENV['BOX_URI'] || "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
 AWS_REGION = ENV['AWS_REGION'] || "us-east-1"
@@ -98,11 +108,9 @@ Vagrant::configure("2") do |config|
   end
 
   config.ssh.forward_agent = true
- 
-  # Here we just forward our port of interest for ipython - how do we
-  # programmatically get the port if auto_corrected?
-  # Also - while this works for me (Dav) in other Vagrant contexts, it does not
-  # appear to work here, still requiring an ssh port forward.
+
+  # This is another way to forward our port of interest for ipython.
+  # But how do we programmatically get the port if auto_corrected?
   # config.vm.network :forwarded_port, guest: 8888, host: 8888, auto_correct: true
 end
 
@@ -165,6 +173,15 @@ Vagrant::VERSION >= "1.1.0" and Vagrant.configure("2") do |config|
     # vb.memory = 2048
     # Above seems a null op
     vb.customize ["modifyvm", :id, "--memory", "2048"]
+
+    # Some other stuff we're not using, but keeping here for documentation
+
+    # This only works if *some* level of guest extensions are installed
+    # And apparently not on linux :(
+    # vb.customize "post-boot", ["guestcontrol", :id, "updateadditions"]
+
+    # There's a plugin that (probably) *will* work here:
+    # https://github.com/dotless-de/vagrant-vbguest
   end
 end
 
