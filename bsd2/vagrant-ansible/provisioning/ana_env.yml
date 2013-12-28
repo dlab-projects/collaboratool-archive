@@ -1,13 +1,11 @@
 - hosts: all
   tasks:
 
-      # Now for the approach I'll recommend
-      # We need to use shell (not recommended for "secure and predictable") as
-      # we need the pipe to work
-      # Note also, tee by default overwrites the file, so it's ok to run this
-      # multiple times
-      #- shell: wget -O- http://neuro.debian.net/lists/precise.us-ca.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
-      #- command: apt-key adv --recv-keys --keyserver pgp.mit.edu 2649A5A9
+      # We need to use shell here (not recommended for "secure and predictable") as
+      # we need the pipe to work.
+      # Note also, tee overwrites the file, so this is idempotent.
+      # - shell: wget -O- http://neuro.debian.net/lists/precise.us-ca.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
+      # - command: apt-key adv --recv-keys --keyserver pgp.mit.edu 2649A5A9
 
       # We can't add repositories using the ansible apt_* commands without
       # pycurl. Note, we only want to update the cache once (in the first apt
@@ -17,7 +15,7 @@
       # Found key via
       # http://pgp.mit.edu:11371/pks/lookup?search=neurodebian&op=vindex
       - apt_key: url=http://pgp.mit.edu:11371/pks/lookup?op=get&search=0xA5D32F012649A5A9
-      - apt_repository: repo='deb http://neurodeb.pirsquared.org data main contrib non-free' state=present
+      # - apt_repository: repo='deb http://neurodeb.pirsquared.org data main contrib non-free' state=present
       - apt_repository: repo='deb http://neurodeb.pirsquared.org precise main contrib non-free' state=present
 
       # Additional python packages
@@ -104,7 +102,7 @@
             - libreoffice
             - lyx
             - mysql-client
-            - postgresql-9.1 
+            - postgresql-9.1
             - sqlite3
             - tex4ht
             - texi2html
