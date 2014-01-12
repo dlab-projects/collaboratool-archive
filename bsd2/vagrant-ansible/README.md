@@ -7,10 +7,10 @@ provisioner.
 
 All Host Platforms
 ==================
-Vagrant, [http://downloads.vagrantup.com](http://downloads.vagrantup.com)
+Vagrant: http://www.vagrantup.com/downloads.html
 1.0.3 is not sufficient, 1.3.5 is.
 
-VirtualBox, [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)
+VirtualBox: https://www.virtualbox.org/wiki/Downloads
 
 Additional host dependencies:
 
