@@ -72,9 +72,8 @@ E.g.:
 
 For R: https://launchpad.net/~marutter/+archive/c2d4u (appears to have replaced 
 https://launchpad.net/~marutter/+archive/rrutter)
-(Dav - is there a reason not to just get R from the standard Ubuntu repositories?
-I think these have pretty up-to-date R, e.g., currently they have 3.0.2, but 
-I may be misunderstanding this issue... - Chris)
+[SCF uses cran.cnr.berkeley.edu/bin/linux/ubuntu - these seem to be signed by Rutter's
+key, so I guess related in some way - Chris]
 
 For python: [NeuroDebian](http://neuro.debian.net/) is likely the best source to
 get recent, but stable versions of scientific packages.
