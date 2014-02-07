@@ -22,7 +22,6 @@ vanilla install (including an OpenSSH server), we do the following. It's
 something we only need to do once to get to the base image, and is pretty few
 steps:
 
-
     apt-get install dkms xserver-xorg
     # Maybe do all updates?
     # Manually mount the Guest Extensions, "insert" using the VBox GUI
@@ -35,16 +34,20 @@ VirtualBox GUI.
 These are packages I'm playing around with as a minimal common interface
 ========================================================================
 
-(Installing in aptitude) - gedit, rabbitvcs-gedit, thunar, thunar-vcs-plugin,
-xfce4, firefox, nano
+(Installing in aptitude for now) - gedit rabbitvcs-gedit thunar thunar-vcs-plugin
+xfce4 firefox nano git xfce4-goodies (a little heavy)
 
 Need to set up nano to do proper 4-space indentation on tab, likewise set up
 gedit for good python editing w/ code highlighting, etc.
 
-To start GUI, run xfce4-session
+To start GUI, run startxfce4
 
 Somehow, IPython (0.13) got installed - so need to uninstall
 
+Also - icons don't work for Thunar :(
+
 The above already has things at 2.3 GB!
+
+Full Xubuntu is smaller than Lubuntu (odd!)
 
 
