@@ -50,4 +50,28 @@ The above already has things at 2.3 GB!
 
 Full Xubuntu is smaller than Lubuntu (odd!)
 
+Target for Summer 2014
+======================
 
+Dav and Ryan identified the following specifications for the summer VM:
+
+	- OS: Ubuntu Server 14.04 (32-bit)
+		+ Python packages should be installed via pip/easy_install since it is likely they will need to be upgraded mid-term while the Ubuntu python-* packages do not change.
+		+ R packages should come from rrutter and c2d4u PPAs since they are kept up-to-date while the Ubuntu r-cran-* packages do not change.
+	- User: Single auto-login user ("oski") with no password sudo.
+	- VirtualBox: Window should be resizable.
+		+ (not discussed yet) bidirectional clipboard enabled
+		+ (not discussed yet) host to guest drag-n-drop enabled
+	- Desktop: XFCE
+		+ One panel with launchers for Terminal, Browser, File Manager, Text Editor
+		+ Substitute solid color for background image
+		+ Remove desktop icon for Trash and File System. Leave Home icon.
+		+ (not discussed yet) Benoit and Ryan suggest an icon on the desktop pointing to /media, VirtualBox's parent of all Shared Folders.
+		+ (not discussed yet) Benoit prefers black-on-white text in terminal since it is easier to see when projected in class
+		+ (not discussed yet) Ryan prefers to change the panel's Application menu icon to a generic computer icon from XFCE's logo.
+
+Undecided
+	- Ryan prefers to hide the grub menu and Linux kernel boot messages. This doesn't fit in with the "glass brick" model where we don't hide the plumbing.
+
+Future Tasks
+	- Investigate box file format to reduce size
